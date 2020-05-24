@@ -1,3 +1,8 @@
+# This is allows the user to play
+# Rock, Paper, Scissors Game
+# against the computer.
+
+# Import random module.
 import random
 
 # Create global constant
@@ -48,57 +53,64 @@ def rockPaperScissors(computer, player):
 		return INVALID   
 
 def main():
- # 0 is a placeholder and will not be used.
+	# 0 is a placeholder and will not be used.
 	player_wins = 0
 	computer_wins = 0
- 
- # This loop will run the game 5 times that count
- # and keep track of how many wins.
- # There must be a winner who wins five times
-	while player_wins != 5 and computer_wins != 5:
- 
-		# Computer chooses a random number.
-		computer = random.randint(1, 3)
 
-		# User enter their numeric choice from a menu.
-		player = int(input('Enter 1 for rock, 2 paper, 3 scissors: '))
-  
-  # Check user's input using a validation loop.
-		while player > 3 or player < 1:
-			print('Please choose a value of 1, 2, or 3')
-			print()
+	# This loop will run the game 3 times that count
+	# and keep track of how many wins.
+	# There must be a winner who wins five times
+	while player_wins != 3 and computer_wins != 3:
+		try:
+			# User enter their numeric choice from a menu.
 			player = int(input('Enter 1 for rock, 2 paper, 3 scissors: '))
- 
-		# Call choiceString(choice) function to print the player’s hand
-		playerString = choiceString(player)
-		print('Player chose:',playerString)
+			
+			# Check user's input using a validation loop.
+			while player > 3 or player < 1:
+				print('Please choose a value of 1, 2, or 3\n')
+				player = int(input('Enter 1 for rock, 2 paper, 3 scissors: '))
+			
+			# Call choiceString(choice) function to print the player’s hand
+			playerString = choiceString(player)
+			print('Player chose:',playerString)
+			
+			# Computer chooses a random number.
+			computer = random.randint(1, 3)
+	
+			# Call choiceString(choice) function to print the computer’s hand
+			computerString = choiceString(computer)
+			print('Computer chose:',computerString)
 
-		# Call choiceString(choice) function to print the computer’s hand
-		computerString = choiceString(computer)
-		print('Computer chose:',computerString)
-  
-  # Call your value returning function rockPaperScissors(computer, player)
-		# to get the result of the round between the computer and player.
-		result = rockPaperScissors(computer, player)
-  
-  # Show player if the result is tie
-		if result == TIE:
-			print('You made the same choice as the computer. Starting over\n')
-		# Declare if the computer is the winner
-		elif result == COMPUTER_WINS:
-			print('The computer wins the game\n')
-			computer_wins = computer_wins + 1
-		# Declare if the player is the winner
-		elif result == PLAYER_WINS:
-			print('The player wins the game\n')
-			player_wins = player_wins + 1
-		# Declare invalid input
-		elif result == INVALID:
-			print('You made an invalid choice. No winner\n')
- # Display score
-	print('After 5 runs, the totals are:')
+			# Call your value returning function rockPaperScissors(computer, player)
+			# to get the result of the round between the computer and player.
+			result = rockPaperScissors(computer, player)
+
+			# Show player if the result is tie
+			if result == TIE:
+				print('You made the same choice as the computer. Starting over\n')
+			# Declare if the computer is the winner
+			elif result == COMPUTER_WINS:
+				print('The computer wins the game\n')
+				computer_wins = computer_wins + 1
+			# Declare if the player is the winner
+			elif result == PLAYER_WINS:
+				print('The player wins the game\n')
+				player_wins = player_wins + 1
+			# Declare invalid input
+			elif result == INVALID:
+				print('You made an invalid choice. No winner\n')
+
+		except ValueError as e:
+				print('The input was not a valid integer.')
+
+	# Display score
+	print('After 3 runs, the totals are:')
 	print('You\t', player_wins)
 	print('Computer', computer_wins)
-
+	if player_wins<computer_wins:
+		print('Sorry, you just lost the game. Try again!')
+	else:
+		print('You won!')
+	
 # Call the main function
 main ()
