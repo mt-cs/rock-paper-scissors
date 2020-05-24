@@ -95,7 +95,6 @@ def main():
 		# Declare invalid input
 		elif result == INVALID:
 			print('You made an invalid choice. No winner\n')
- 
  # Display score
 	print('After 5 runs, the totals are:')
 	print('You\t', player_wins)
